@@ -1,0 +1,56 @@
+﻿<link href="~/Content/bootstrap.css" rel="stylesheet" />
+<link href="~/Content/Site.css" rel="stylesheet" />
+@{
+    Layout = null;
+}
+<style>
+    body {
+        padding-top: 0;
+        background-color: #EFF0F0;
+    }
+</style>
+<script src="~/Scripts/jquery-2.1.4.min.js"></script>
+<script src="~/Scripts/jquery-ui.js"></script>
+<script src="~/Scripts/knockout-3.1.0.js"></script>
+<script type="text/javascript" src="~/JSApp/accountants.js"></script>
+<div class="container content-body" data-bind="attr: { dir: right }" style="width: 100%;">
+    <div data-view="active" id="View">
+        <h2 style="display: inline-block;"></h2>
+
+        <button data-bind="text: 'Add Accountant', attr: { 'class': 'btn btn-info right'  }" id="AddCategory" style="margin-top: 20px;"></button>
+
+        <table class="table table-bordered table-striped table-hover" data-bind="visible: accountants().length > 0">
+            <thead>
+                <tr>
+                    <td data-bind="text: fullName"></td>
+                    <td data-bind="text: address"></td>
+                    <td data-bind="text: socialCardNumber"></td>
+                    <td data-bind="text: phone"></td>
+                    <td data-bind="text: Edit"></td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="text" class="form-control" data-bind="attr: { placeholder: 'FilterByName' }" id="Name" />
+                    </td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </thead>
+            <tbody data-bind="foreach: accountants">
+                <tr>
+                    <td data-bind="text: fullName"></td>
+                    <td data-bind="text: address"></td>
+                    <td data-bind="text: socialCardNumber"></td>
+                    <td data-bind="text: phone"></td>
+                    <td>
+                        <input class="btn btn-default" data-bind="attr: { 'data-id': ID }, click: $root.Edit, value: 'Edit'" data-edit="edit" />
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+

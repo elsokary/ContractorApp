@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="7f856473fa1e469fac7ba8e32f884786" Name="Diagram1">
+        <EntityTypeShape EntityType="contractorModel.accounters" Width="1.5" PointX="6" PointY="13.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="contractorModel.cars" Width="1.5" PointX="0.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="contractorModel.cheques" Width="1.5" PointX="5.25" PointY="25.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="contractorModel.companies" Width="1.5" PointX="0.75" PointY="23.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="contractorModel.contactsLoans" Width="1.5" PointX="0.75" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="contractorModel.expenses" Width="1.5" PointX="5.25" PointY="30" IsExpanded="true" />
+        <EntityTypeShape EntityType="contractorModel.expensesTypes" Width="1.5" PointX="3" PointY="32.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="contractorModel.financialCustody" Width="1.5" PointX="8.25" PointY="27" IsExpanded="true" />
+        <EntityTypeShape EntityType="contractorModel.inventory" Width="1.5" PointX="6" PointY="17.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="contractorModel.inventoryProjectRelease" Width="1.5" PointX="8.25" PointY="23.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="contractorModel.invoices" Width="1.5" PointX="5.25" PointY="35.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="contractorModel.invoicesItems" Width="1.5" PointX="7.5" PointY="37" IsExpanded="true" />
+        <EntityTypeShape EntityType="contractorModel.loans" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="contractorModel.loansItems" Width="1.5" PointX="5.25" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="contractorModel.projectItems" Width="1.5" PointX="5.25" PointY="39.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="contractorModel.projects" Width="1.5" PointX="3" PointY="26.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="contractorModel.projectsContacts" Width="1.5" PointX="5.25" PointY="42.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="contractorModel.projectsSubContractors" Width="1.5" PointX="8.25" PointY="31.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="contractorModel.projectsWorkers" Width="1.5" PointX="5.25" PointY="21.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="contractorModel.subContractors" Width="1.5" PointX="9" PointY="19.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="contractorModel.subContractorsCustody" Width="1.5" PointX="11.25" PointY="27.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="contractorModel.subContractorsItems" Width="1.5" PointX="11.25" PointY="23.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="contractorModel.users" Width="1.5" PointX="2.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="contractorModel.workerLoans" Width="1.5" PointX="5.25" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="contractorModel.workers" Width="1.5" PointX="3" PointY="18.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="contractorModel.workerTimeSheet" Width="1.5" PointX="11.25" PointY="31.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="contractorModel.workerTypes" Width="1.5" PointX="0.75" PointY="19" IsExpanded="true" />
+        <AssociationConnector Association="contractorModel.FK_expenses_accounters" ManuallyRouted="false" />
+        <AssociationConnector Association="contractorModel.FK_financialCustody_accounters" ManuallyRouted="false" />
+        <AssociationConnector Association="contractorModel.FK_cheques_companies" ManuallyRouted="false" />
+        <AssociationConnector Association="contractorModel.FK_cheques_projects" ManuallyRouted="false" />
+        <AssociationConnector Association="contractorModel.FK_projects_companies" ManuallyRouted="false" />
+        <AssociationConnector Association="contractorModel.FK_loans_contactsLoans" ManuallyRouted="false" />
+        <AssociationConnector Association="contractorModel.FK_expenses_expensesTypes" ManuallyRouted="false" />
+        <AssociationConnector Association="contractorModel.FK_expenses_projects" ManuallyRouted="false" />
+        <AssociationConnector Association="contractorModel.FK_financialCustody_projects" ManuallyRouted="false" />
+        <AssociationConnector Association="contractorModel.FK_inventoryProjectRelease_inventory" ManuallyRouted="false" />
+        <AssociationConnector Association="contractorModel.FK_inventoryProjectRelease_projects" ManuallyRouted="false" />
+        <AssociationConnector Association="contractorModel.FK_invoices_projects" ManuallyRouted="false" />
+        <AssociationConnector Association="contractorModel.FK_invoicesItems_invoices" ManuallyRouted="false" />
+        <AssociationConnector Association="contractorModel.FK_invoicesItems_projectItems" ManuallyRouted="false" />
+        <AssociationConnector Association="contractorModel.FK_loansItems_loansItems" ManuallyRouted="false" />
+        <AssociationConnector Association="contractorModel.FK_projectItems_projects" ManuallyRouted="false" />
+        <AssociationConnector Association="contractorModel.FK_projectsContacts_projects" ManuallyRouted="false" />
+        <AssociationConnector Association="contractorModel.FK_projectsSubContractors_projects" ManuallyRouted="false" />
+        <AssociationConnector Association="contractorModel.FK_projectsWorkers_projects" ManuallyRouted="false" />
+        <AssociationConnector Association="contractorModel.FK_subContractorsCustody_projects" ManuallyRouted="false" />
+        <AssociationConnector Association="contractorModel.FK_subContractorsItems_projects" ManuallyRouted="false" />
+        <AssociationConnector Association="contractorModel.FK_workerTimeSheet_projects" ManuallyRouted="false" />
+        <AssociationConnector Association="contractorModel.FK_projectsSubContractors_subContractors" ManuallyRouted="false" />
+        <AssociationConnector Association="contractorModel.FK_projectsWorkers_workers" ManuallyRouted="false" />
+        <AssociationConnector Association="contractorModel.FK_subContractorsCustody_subContractors" ManuallyRouted="false" />
+        <AssociationConnector Association="contractorModel.FK_subContractorsItems_subContractors" ManuallyRouted="false" />
+        <AssociationConnector Association="contractorModel.FK_workerLoans_workers" ManuallyRouted="false" />
+        <AssociationConnector Association="contractorModel.FK_workers_workerTypes" ManuallyRouted="false" />
+        <AssociationConnector Association="contractorModel.FK_workerTimeSheet_workers" ManuallyRouted="false" />
+        <AssociationConnector Association="contractorModel.FK_loansItems_contactsLoans" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
