@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataContext", "DataContext\DataContext.csproj", "{7B610A54-052D-4280-AA6C-6BE544A9D423}"
 EndProject
@@ -23,6 +23,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContractorApps", "ContractorApps\ContractorApps.csproj", "{41A554DB-7320-485F-962A-5F112CA02F45}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mekawalaty", "Mekawalaty\Mekawalaty.csproj", "{0E157EC4-FF3F-4177-91AD-86CFB64AA621}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Security", "Security\Security.csproj", "{80EA8ADA-8B0F-49A7-9BE3-BBDCC0F27F4C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -58,6 +60,10 @@ Global
 		{0E157EC4-FF3F-4177-91AD-86CFB64AA621}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0E157EC4-FF3F-4177-91AD-86CFB64AA621}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0E157EC4-FF3F-4177-91AD-86CFB64AA621}.Release|Any CPU.Build.0 = Release|Any CPU
+		{80EA8ADA-8B0F-49A7-9BE3-BBDCC0F27F4C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{80EA8ADA-8B0F-49A7-9BE3-BBDCC0F27F4C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{80EA8ADA-8B0F-49A7-9BE3-BBDCC0F27F4C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{80EA8ADA-8B0F-49A7-9BE3-BBDCC0F27F4C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

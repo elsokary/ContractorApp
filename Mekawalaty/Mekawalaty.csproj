@@ -54,18 +54,65 @@
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.5.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Microsoft.Owin, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Owin.3.0.1\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Cors">
+      <HintPath>..\packages\Microsoft.Owin.Cors.3.0.1\lib\net45\Microsoft.Owin.Cors.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject">
+      <HintPath>..\packages\Ninject.3.2.2.0\lib\net45-full\Ninject.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject.Extensions.ContextPreservation">
+      <HintPath>..\packages\Ninject.Extensions.ContextPreservation.3.2.0.0\lib\net45-full\Ninject.Extensions.ContextPreservation.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject.Extensions.NamedScope">
+      <HintPath>..\packages\Ninject.Extensions.NamedScope.3.2.0.0\lib\net45-full\Ninject.Extensions.NamedScope.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject.Web.Common">
+      <HintPath>..\packages\Ninject.Web.Common.3.2.3.0\lib\net45-full\Ninject.Web.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject.Web.Common.OwinHost">
+      <HintPath>..\packages\Ninject.Web.Common.OwinHost.3.2.3.0\lib\net45-full\Ninject.Web.Common.OwinHost.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject.Web.WebApi">
+      <HintPath>..\packages\Ninject.Web.WebApi.3.2.4.0\lib\net45-full\Ninject.Web.WebApi.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject.Web.WebApi.OwinHost">
+      <HintPath>..\packages\Ninject.Web.WebApi.OwinHost.3.2.4.0\lib\net45-full\Ninject.Web.WebApi.OwinHost.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.0.0\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Cors">
+      <HintPath>..\packages\Microsoft.AspNet.Cors.5.0.0\lib\net45\System.Web.Cors.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Http, Version=5.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.0.0\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.Owin, Version=5.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Owin.5.0.1\lib\net45\System.Web.Http.Owin.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.Optimization">
       <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
     </Reference>
@@ -88,20 +135,11 @@
     </Reference>
     <Reference Include="System.Net.Http">
     </Reference>
-    <Reference Include="System.Net.Http.Formatting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.4.0.30506.0\lib\net40\System.Net.Http.Formatting.dll</HintPath>
-    </Reference>
     <Reference Include="System.Net.Http.WebRequest">
     </Reference>
     <Reference Include="System.Web.Helpers, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.30506.0\lib\net40\System.Web.Helpers.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.4.0.30506.0\lib\net40\System.Web.Http.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Web.Http.WebHost, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.4.0.30506.0\lib\net40\System.Web.Http.WebHost.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
@@ -138,11 +176,18 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Content Include="app\config.js" />
     <Content Include="app\main.js" />
+    <Content Include="app\main2.js" />
+    <Content Include="app\services\authInterceptor.js" />
+    <Content Include="app\services\dataservice.js" />
+    <Content Include="app\services\export.js" />
+    <Content Include="app\services\tokenStore.js" />
     <Content Include="app\viewmodels\flickr.js" />
     <Content Include="app\viewmodels\shell.js" />
     <Content Include="app\viewmodels\welcome.js" />
@@ -743,6 +788,9 @@
     <Content Include="javaScript\HighSlide\highslide.config.js" />
     <Content Include="javaScript\jqueryui\jquery-ui-1.11.1.js" />
     <Content Include="javaScript\jqueryui\jquery-ui-1.11.1.min.js" />
+    <Content Include="app\documentDefenition.json" />
+    <Content Include="app\permissions.json" />
+    <Content Include="app\resources.json" />
     <None Include="javaScript\jquery\jquery-2.1.1.intellisense.js" />
     <Content Include="javaScript\jquery\jquery-2.1.1.js" />
     <Content Include="javaScript\jquery\jquery-2.1.1.min.js" />
@@ -1276,6 +1324,26 @@
     <Content Include="javaScript\smartAdmin\smartwidgets\jarvis.widget.min.js" />
     <Content Include="javaScript\smartAdmin\speech\voicecommand.min.js" />
     <None Include="javaScript\_references.js" />
+    <Content Include="public\Icons\Avatar.svg" />
+    <Content Include="public\Icons\Change-status_Normal.svg" />
+    <Content Include="public\Icons\Change_status_Icon_hovered.svg" />
+    <Content Include="public\Icons\Change_status_Row_hovered.svg" />
+    <Content Include="public\Icons\Key_Sign-in.svg" />
+    <Content Include="public\Icons\Next.svg" />
+    <Content Include="public\Icons\Permissions_Icon_hovered.svg" />
+    <Content Include="public\Icons\Permissions_Normal.svg" />
+    <Content Include="public\Icons\Permissions_Row_hovered.svg" />
+    <Content Include="public\Icons\Previous.svg" />
+    <Content Include="public\Icons\Suspended_Icon_hovered.svg" />
+    <Content Include="public\Icons\Suspended_Normal.svg" />
+    <Content Include="public\Icons\Suspended_Row_hovered.svg" />
+    <Content Include="public\Icons\Task_Admin_Icon_hovered.svg" />
+    <Content Include="public\Icons\Task_Admin_Normal.svg" />
+    <Content Include="public\Icons\Task_Admin_Row_hovered.svg" />
+    <Content Include="public\Icons\Transfer_Icon_hovered.svg" />
+    <Content Include="public\Icons\Transfer_Normal.svg" />
+    <Content Include="public\Icons\Transfer_Row_hovered.svg" />
+    <Content Include="public\Icons\Welcome Back.svg" />
     <Content Include="Scripts\almond-custom.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -1351,6 +1419,8 @@
     <Content Include="javaScript\smartAdmin\plugin\ckeditor\skins\moono\readme.md" />
     <Content Include="javaScript\smartAdmin\plugin\datatables\jquery.dataTables.min.js.map" />
     <Content Include="javaScript\smartAdmin\plugin\x-editable\x-editable.min.js.map" />
+    <Content Include="public\Icons\.DS_Store" />
+    <Content Include="public\IP_Configuration.json" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\durandal\activator.js" />
     <Content Include="Scripts\durandal\app.js" />
@@ -1438,6 +1508,10 @@
     <ProjectReference Include="..\Interface\Interface.csproj">
       <Project>{479fa21b-2b56-40d2-92f1-f32f56150b43}</Project>
       <Name>Interface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Security\Security.csproj">
+      <Project>{80ea8ada-8b0f-49a7-9be3-bbdcc0f27f4c}</Project>
+      <Name>Security</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

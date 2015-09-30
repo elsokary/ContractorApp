@@ -1,11 +1,15 @@
 ﻿using DataServices.Repository;
 using Interface.IDataService;
+using Security;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Web;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Hosting;
+using System.Web.Routing; 
 
 namespace Mekawalaty.Controllers
 {
@@ -39,6 +43,16 @@ namespace Mekawalaty.Controllers
 
         }
 
+        [AuthorizeUser]
+        [HttpGet]
+        [Route("CheckTokenValidity")]
+        public IHttpActionResult CheckTokenValidity()
+        {
+            //var currentUrl = HttpContext.Current.Request.Url.Host;
 
+            //var primeData = _accountRepository.GetUserPrimeData(_userType, _groupId, _accountOwnerId, _accountId, currentUrl);
+
+            return Ok();
+        }
     }
 }
