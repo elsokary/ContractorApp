@@ -199,7 +199,13 @@ define(['durandal/system', 'durandal/app', 'durandal/activator', 'durandal/event
 
         activeItem.settings.areSameItem = function (currentItem, newItem, currentActivationData, newActivationData) {
             if (currentItem == newItem) {
-                return compareArrays(currentActivationData, newActivationData);
+                var areSame = compareArrays(currentActivationData, newActivationData);
+
+                if (areSame) {
+                    return false;
+                }
+
+                return true;
             }
 
             return false;

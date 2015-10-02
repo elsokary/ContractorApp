@@ -182,8 +182,8 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Content Include="app\config.js" />
+    <Content Include="app\main1.js" />
     <Content Include="app\main.js" />
-    <Content Include="app\main2.js" />
     <Content Include="app\services\authInterceptor.js" />
     <Content Include="app\services\dataservice.js" />
     <Content Include="app\services\export.js" />
