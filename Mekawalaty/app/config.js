@@ -1,4 +1,4 @@
-﻿define(['text!resources.json', 'text!permissions.json', 'services/tokenstore', 'services/export'], function (resources, permissions, tokenStore, exportService) {
+﻿define(['services/tokenstore', 'services/export'], function ( tokenStore, exportService) {
     var routes = [{
         route: '',
         moduleId: 'login',
@@ -75,29 +75,23 @@
     };
 
     //Jquery Validation Custom Validators
-    (function ($) {
-        //validates if value > 0
-        $.validator.addMethod("greaterThanZero", function (value, element, param) {
-            return this.optional(element) || parseFloat(value) > 0;
-        }, "Please insert a value greater than Zero");
+    //(function ($) {
+    //    //validates if value > 0
+    //    $.validator.addMethod("greaterThanZero", function (value, element, param) {
+    //        return this.optional(element) || parseFloat(value) > 0;
+    //    }, "Please insert a value greater than Zero");
 
-        $.validator.addMethod("dateFormat", function (value, element) {
-            return value.match(/^\d\d?\/\d\d?\/\d\d\d\d$/);
-        }, "Please enter a date in the format dd/mm/yyyy.");
+    //    $.validator.addMethod("dateFormat", function (value, element) {
+    //        return value.match(/^\d\d?\/\d\d?\/\d\d\d\d$/);
+    //    }, "Please enter a date in the format dd/mm/yyyy.");
 
-        $.validator.addMethod('minOrEqual', function (value, el, param) {
-            return parseFloat(value) >= param;
-        }, "P");
-    })(jQuery);
+    //    $.validator.addMethod('minOrEqual', function (value, el, param) {
+    //        return parseFloat(value) >= param;
+    //    }, "P");
+    //})(jQuery);
 
-    var userPermissions = ko.observableArray([]); 
-
-    var language = JSON.parse(resources);
-
-    var currentLanguage = ko.observable();
-
-    var permission = ko.mapping.fromJS(JSON.parse(permissions)).authorization;
-
+    var currentLanguage = ko.observable('Ar');
+ 
     if (localStorage.getItem('language')) {
         currentLanguage(localStorage.getItem('language'));
     } else {
@@ -105,30 +99,28 @@
     }
 
     var isAllow = function (code) {
-        if (currentProject() === undefined) {
-            if (window.localStorage.getItem("lastSelectedProject") != null) {
+        //if (currentProject() === undefined) {
+        //    if (window.localStorage.getItem("lastSelectedProject") != null) {
 
-                projectName(window.localStorage.getItem("lastSelectedprojectName"));
-                currentProject(JSON.parse(window.localStorage.getItem("lastSelectedProject")));
-            }
-        }
-        if (isCompany() === false) {
-            var isAllowed = userPermissions.indexOf(code);
-            if (isAllowed != -1) {
-                return true;
-            } else {
-                return false;
+        //        projectName(window.localStorage.getItem("lastSelectedprojectName"));
+        //        currentProject(JSON.parse(window.localStorage.getItem("lastSelectedProject")));
+        //    }
+        //}
+        //if (isCompany() === false) {
+        //    var isAllowed = userPermissions.indexOf(code);
+        //    if (isAllowed != -1) {
+        //        return true;
+        //    } else {
+        //        return false;
 
-            }
-        } else {
-            return true;
-        }
+        //    }
+        //} else {
+        //    return true;
+        //}
 
-
+        return true;
     };
-      
-    var localization = language.jqxGridLanguage[currentLanguage()].localizationobj;
-
+ 
     var contactName = ko.observable("");
 
     var exportColumn = function (friendlyName, fieldName, type) {
@@ -760,7 +752,7 @@
                 showfiltermenuitems: true,
                 showgroupmenuitems: false,
                 groupable: true,
-                localization: localization,
+                //localization: localization,
                 autosavestate: true,
                 width: '95.5%',
                 autoheight: true,
@@ -778,7 +770,7 @@
                 },
                 columns: columns.gridColumns(),
                 groups: groups.groups(),
-                rtl: language.rtl[currentLanguage()]
+                rtl: true
             });
 
             createShowHideFooterToolbar($(element), columns.gridColumns());
@@ -816,7 +808,7 @@
                 width: '100%',
                 altRows: true,
                 pagerMode: 'advanced',
-                rtl: language.rtl[currentLanguage()]
+                rtl: true
             });
         }
     };
@@ -893,7 +885,7 @@
 
             if (field === 'statusName') {
                 if (value || (typeof value === 'boolean')) {
-                    value = value ? language.oppened[currentLanguage()] : language.closed[currentLanguage()];
+                    value = value ? 'opened' : 'closed';
                 } else {
                     value = null;
                 }
@@ -901,7 +893,7 @@
 
             if (field === 'readUnread') {
                 if (value || (typeof value === 'boolean')) {
-                    value = value ? language.read[currentLanguage()] : language.unRead[currentLanguage()];
+                    value = value ? 'read' : 'unread';
                 } else {
                     value = null;
                 }
@@ -1009,9 +1001,9 @@
                 filterValue().endDate.subscribe(function (value) {
                     filterValue.valueHasMutated();
                 });
-                filterTemplate = '<div style="margin: 3px"><input readonly style="cursor: pointer !important;" placeholder="' + language.filterHere[currentLanguage()] + '" class="form-control" data-bind="DatePickerRange: true, startDate: filterValue().startDate, endDate: filterValue().endDate" type="text" /></div>';
+                filterTemplate = '<div style="margin: 3px"><input readonly style="cursor: pointer !important;" placeholder="Filter Here"  class="form-control" data-bind="DatePickerRange: true, startDate: filterValue().startDate, endDate: filterValue().endDate" type="text" /></div>';
             } else if (filterType === 'status') {
-                filterTemplate = '<div style="margin: 3px; width: 57%;"><select class="form-control" data-bind="booleanValue: filterValue" required><option>' + language.all[currentLanguage()] + '</option> <option value="true">' + language.oppened[currentLanguage()] + '</option><option value="false">' + language.closed[currentLanguage()] + '</option></select></div>';
+                filterTemplate = '<div style="margin: 3px; width: 57%;"><select class="form-control" data-bind="booleanValue: filterValue" required><option> ALL </option> <option value="true">Open</option><option value="false"> Close </option></select></div>';
             }
 
             return '<div><div style="border-bottom: 1px solid rgb(212,212,212);" data-bind="click: sort, css: {\'kgSorted\': !noSortVisible }, attr: {\'class\': \'kgHeaderSortColumn \' + headerClass()}" draggable="true"><div data-bind="attr: { \'class\': \'colt\' + $index() + \' kgHeaderText\' }, html: displayName"></div><div class="kgSortButtonDown" data-bind="visible: showSortButtonDown" style="display: none;"></div><div class="kgSortButtonUp" data-bind="visible: showSortButtonUp" style="display: none;"></div><div data-bind="visible: resizable, click: gripClick, mouseEvents: { mouseDown: gripOnMouseDown }" class="kgHeaderGrip"></div></div>' + filterTemplate + '</div>';
@@ -1089,8 +1081,8 @@
             showGroupPanel: true,
             multiSelect: false,
             showFilter: false,
-            titleOfGroupingArea: localization.groupsheaderstring,
-            currentLanguage: currentLanguage,
+            titleOfGroupingArea: 'Drag a column and drop it here to group by that column',
+            currentLanguage: 'Ar',
             displaySelectionCheckbox: true,
             afterSelectionChange: function () { },
             headerRowHeight: 68,
@@ -1376,26 +1368,21 @@
     return {
         profilePath: profilePath,
         routes: routes,
-        remoteServerName: remoteServerName,
-        language: language,
+        remoteServerName: remoteServerName, 
         JqxGridDataSource: jqxGridDataSource,
         JqxGridColumns: jqxGridColumns,
-        GridModel: grid,
-        permission: permission,
+        GridModel: grid, 
         postJson: postJson,
         isPageSetup: isPageSetup,
         getAuthenticationHeader: getAuthenticationHeader, 
-        currentProject: currentProject,
-        totalNotification: totalNotification,
-        lastSelectedProject: lastSelectedProject,
-        currentdocApprovalId: currentdocApprovalId,
+        currentProject: currentProject, 
+        lastSelectedProject: lastSelectedProject, 
         currentLanguage: currentLanguage,
         isCompany: isCompany,
         isAllow: isAllow, 
         JqxGroups: jqxGroups,
         ExportColumn: exportColumn,
-        exportJson: exportJson,
-        userPermissions: userPermissions, 
+        exportJson: exportJson, 
         projectName: projectName,
         fromWidgetProject: fromWidgetProject,
         jqxGridColumnGroups: jqxGridColumnGroups,

@@ -27,7 +27,7 @@
         }
     });
 
-    var lastUpdatedNotification = ko.observable();
+    //var lastUpdatedNotification = ko.observable();
 
     var notificationModel = ko.observable();
 
@@ -49,7 +49,7 @@
         notificationModel(undefined);
         notificationModel(currentNotificationModel);
 
-        lastUpdatedNotification(moment().format("DD/MM/YYYY hh:mm:ss a"));
+       // lastUpdatedNotification(moment().format("DD/MM/YYYY hh:mm:ss a"));
     }
 
     function userLogout() {
@@ -167,7 +167,7 @@
             }
         });
 
-        lastUpdatedNotification(moment().format("DD/MM/YYYY hh:mm:ss a"));
+        //lastUpdatedNotification(moment().format("DD/MM/YYYY hh:mm:ss a"));
 
         var currentLang = config.currentLanguage();
 
@@ -196,10 +196,10 @@
 
     function attached() {
          
-        initApp.addDeviceType();
-        initApp.leftNav();
-        initApp.SmartActions();
-        initApp.domReadyMisc();
+        //initApp.addDeviceType();
+        //initApp.leftNav();
+        //initApp.SmartActions();
+        //initApp.domReadyMisc();
          
         determineTransitionEvent();
 
@@ -228,7 +228,7 @@
     var shell = {
         activate: activate,
         router: router,
-        language: config.language,
+        //language: config.language,
         currentLanguage: config.currentLanguage,
         attached: attached,
         userLogout: userLogout,
@@ -237,7 +237,7 @@
         getNotifications: getNotifications,
         notificationModel: notificationModel,
         getPostitNotifications: getPostitNotifications,
-        lastUpdatedNotification: lastUpdatedNotification,
+        //lastUpdatedNotification: lastUpdatedNotification,
         loadMoreOfCurrentNotifications: loadMoreOfCurrentNotifications,
         currentModuleMenu: config.currentModuleMenu
     };

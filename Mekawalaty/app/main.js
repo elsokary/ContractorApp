@@ -1,23 +1,20 @@
 ﻿require.config({
     paths: {
         'text': '../Scripts/text',
-        'resources': 'resources',
-        'permissions': 'permissions',
+        //'resources': 'resources',
+        //'permissions': 'permissions',
         'config': 'config',
         'durandal': '../Scripts/durandal',
-        'knockout': '../Scripts/knockout-3.1.0',
-        'jquery': '../Scripts/jquery-1.9.1',
+        //'knockout': '../Scripts/knockout-3.1.0',
+       // 'jquery': '../Scripts/jquery-1.9.1',
         'bootstrap': '../Scripts/bootstrap',
         'plugins': '../Scripts/durandal/plugins',
         'transitions': '../Scripts/durandal/transitions' 
-    },
-    shim: {
-        'bootstrap': {
-            deps: ['jquery'],
-            exports: 'jQuery'
-        }
-    }
+    } 
 });
+
+define('jquery', function () { return jQuery; });
+define('knockout', ko);
 
 define('main', ['durandal/system', 'durandal/app', 'durandal/viewLocator', 'plugins/router', 'services/dataservice', 'services/authInterceptor', 'services/tokenstore', 'config', 'plugins/durandal-exception-catch-all'], function (system, app, viewLocator, router, dataservice, authInterceptor, tokenStore, config, exceptionCatchAll) {
     //exceptionCatchAll.onException(function () {
@@ -63,26 +60,28 @@ define('main', ['durandal/system', 'durandal/app', 'durandal/viewLocator', 'plug
     });
 
     authInterceptor.setupHttpCalls();
+     
+    router.makeRelative({ moduleId: 'viewmodels' });
 
-    var totalNotification = ko.observable(1);
+    viewLocator.useConvention();
 
-    totalNotification.subscribe(function () {
-        config.totalNotification(totalNotification());
-    });
+    app.setRoot('viewmodels/shell');
 
-    var startApp = function () {
-        app.start().then(function () {
+    system.log('Main Module started');
 
-            router.makeRelative({ moduleId: 'viewmodels' });
+    //var startApp = function () {
+    //    app.start().then(function () {
 
-            viewLocator.useConvention();
+    //        router.makeRelative({ moduleId: 'viewmodels' });
 
-            app.setRoot('viewmodels/shell');
+    //        viewLocator.useConvention();
 
-            system.log('Main Module started');
-        });
-    };
+    //        app.setRoot('viewmodels/shell');
 
-    var appStarted = ko.observable(false);
+    //        system.log('Main Module started');
+    //    });
+    //};
+
+   // var appStarted = ko.observable(false);
 
 });
