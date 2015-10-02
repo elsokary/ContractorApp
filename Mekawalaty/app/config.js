@@ -95,7 +95,7 @@
     if (localStorage.getItem('language')) {
         currentLanguage(localStorage.getItem('language'));
     } else {
-        currentLanguage('en');
+        currentLanguage('Ar');
     }
 
     var isAllow = function (code) {

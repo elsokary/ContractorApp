@@ -26,45 +26,7 @@
             return 'en';
         }
     });
-
-    //var lastUpdatedNotification = ko.observable();
-
-    var notificationModel = ko.observable();
-
-    var getNotifications = function (obj, e) {
-        $('.notified').removeClass('notified');
-        $(e.currentTarget).addClass('notified');
-        //notificationModel('viewmodels/notifications/taskNotifications');
-    };
-
-    var getPostitNotifications = function (obj, e) {
-        $('.notified').removeClass('notified');
-        $(e.currentTarget).addClass('notified');
-        //notificationModel('viewmodels/notifications/postitNotifications');
-    }
-
-    var loadMoreOfCurrentNotifications = function (obj, e) {
-        var currentNotificationModel = notificationModel();
-
-        notificationModel(undefined);
-        notificationModel(currentNotificationModel);
-
-       // lastUpdatedNotification(moment().format("DD/MM/YYYY hh:mm:ss a"));
-    }
-
-    function userLogout() {
-        $.SmartMessageBox({
-            title: "<i class='fa fa-sign-out txt-color-orangeDark'></i> Logout <span class='txt-color-orangeDark'><strong>" + $('#show-shortcut').text() + "</strong></span> ?",
-            content: "You will be missed, Are you sure you want to leave us?",
-            buttons: '[No][Yes]'
-        }, function (buttonPressed) {
-            if (buttonPressed === "Yes") {
-                tokenStore.removeToken();
-                window.location.reload();
-            }
-        });
-    }
-
+ 
     var transitionEnd;
 
     function toggleShortcut() {
@@ -195,12 +157,7 @@
     }
 
     function attached() {
-         
-        //initApp.addDeviceType();
-        //initApp.leftNav();
-        //initApp.SmartActions();
-        //initApp.domReadyMisc();
-         
+ 
         determineTransitionEvent();
 
         var currentLang = config.currentLanguage();
@@ -227,18 +184,11 @@
 
     var shell = {
         activate: activate,
-        router: router,
-        //language: config.language,
+        router: router, 
         currentLanguage: config.currentLanguage,
-        attached: attached,
-        userLogout: userLogout,
+        attached: attached, 
         constructNavigation: constructNavigation,
-        languageSelected: languageSelected,
-        getNotifications: getNotifications,
-        notificationModel: notificationModel,
-        getPostitNotifications: getPostitNotifications,
-        //lastUpdatedNotification: lastUpdatedNotification,
-        loadMoreOfCurrentNotifications: loadMoreOfCurrentNotifications,
+        languageSelected: languageSelected,   
         currentModuleMenu: config.currentModuleMenu
     };
 
