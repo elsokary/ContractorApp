@@ -188,10 +188,12 @@
     <Content Include="app\services\dataservice.js" />
     <Content Include="app\services\export.js" />
     <Content Include="app\services\tokenStore.js" />
+    <Content Include="app\viewmodels\adminSetting\company.js" />
     <Content Include="app\viewmodels\dashboard.js" />
     <Content Include="app\viewmodels\login.js" />
     <Content Include="app\viewmodels\shell.js" />
     <Content Include="app\viewmodels\shell2.js" />
+    <Content Include="app\views\adminSetting\company.html" />
     <Content Include="app\views\dashboard.html" />
     <Content Include="app\views\login.html" />
     <Content Include="app\views\shell.html" />
@@ -1581,6 +1583,10 @@
     <Content Include="_splash.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="app\viewmodels\reports\" />
+    <Folder Include="app\viewmodels\transactions\" />
+    <Folder Include="app\views\reports\" />
+    <Folder Include="app\views\transactions\" />
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
