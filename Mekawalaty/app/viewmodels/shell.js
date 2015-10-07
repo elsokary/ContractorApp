@@ -26,8 +26,22 @@
             return 'en';
         }
     });
- 
+
     var transitionEnd;
+
+    function userLogout() {
+        $.SmartMessageBox({
+            title: "<i class='fa fa-sign-out txt-color-orangeDark'></i> Logout <span class='txt-color-orangeDark'><strong>" + $('#show-shortcut').text() + "</strong></span> ?",
+            content: "You will be missed, Are you sure you want to leave us?",
+            buttons: '[No][Yes]'
+        }, function (buttonPressed) {
+            if (buttonPressed === "Yes") {
+                tokenStore.removeToken();
+                window.location.reload();
+            }
+        });
+    }
+
 
     function toggleShortcut() {
 
@@ -151,13 +165,12 @@
     };
 
     function activate() {
-        notificationModel(undefined);
 
         return boot();
     }
 
     function attached() {
- 
+
         determineTransitionEvent();
 
         var currentLang = config.currentLanguage();
@@ -166,30 +179,31 @@
             $('body').addClass('smart-rtl');
         }
 
-        $('.user-menu .dropdown-menu').click(function(e) {
+        $('.user-menu .dropdown-menu').click(function (e) {
             e.stopPropagation();
         });
-      
+
         $("[rel='tooltip']").tooltip({ 'container': 'body' });
 
-        $("body").on("click", '[data-action="toggleShortcut"]', function(e) {
+        $("body").on("click", '[data-action="toggleShortcut"]', function (e) {
             toggleShortcut();
             e.preventDefault();
         });
     }
 
     var constructNavigation = function (dom, obj) {
- 
+
     };
 
     var shell = {
         activate: activate,
-        router: router, 
+        router: router,
         currentLanguage: config.currentLanguage,
-        attached: attached, 
+        attached: attached,
         constructNavigation: constructNavigation,
-        languageSelected: languageSelected,   
-        currentModuleMenu: config.currentModuleMenu
+        languageSelected: languageSelected,
+        currentModuleMenu: config.currentModuleMenu,
+        userLogout: userLogout
     };
 
     return shell;

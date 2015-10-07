@@ -1,49 +1,44 @@
 ﻿define(['plugins/router', 'services/dataservice', 'config'], function (router, dataservice, config) {
+    var knockoutGrid = {};
 
-    var projectCompanies = new config.GridModel;
+    var gridOptions = ko.observable();
 
-    projectCompanies.data([]);
-
-    var dataSource = new config.JqxGridDataSource();
-
-    var columns = new config.JqxGridColumns();
-    var projectContactTitle = ko.observable();
     var selectedRowId = ko.observable();
-    var companies = ko.observable();
-    var changeStatus = ko.observable(false);
-    var editable = ko.observable(false);
-    var companyId = ko.observable();
 
-
+    var changeStatus = ko.observable(false);  
+     
     var exportColumns = [];
 
     var exportToExcel = function () {
-        var exportData = $('#projectContactsTable').jqxGrid('getrows');
+        var exportData = ko.toJS(knockoutGrid.getFilteredData()());
 
-        config.exportJson(ko.toJS(exportData), exportColumns, 'excel', 'Contacts');
+        config.exportJson(ko.toJS(exportData), exportColumns, 'excel', 'Companies');
     };
 
     var exportToWord = function () {
-        var exportData = $('#projectContactsTable').jqxGrid('getrows');
+        var exportData = ko.toJS(knockoutGrid.getFilteredData()());
 
-        config.exportJson(ko.toJS(exportData), exportColumns, 'word', 'Contacts');
+        config.exportJson(ko.toJS(exportData), exportColumns, 'word', 'Companies');
     };
 
     var exportToPdf = function () {
-        var exportData = $('#projectContactsTable').jqxGrid('getrows');
+        var exportData = ko.toJS(knockoutGrid.getFilteredData()());
 
-        config.exportJson(ko.toJS(exportData), exportColumns, 'pdf', 'Contacts');
+        config.exportJson(ko.toJS(exportData), exportColumns, 'pdf', 'Companies');
     };
 
-    var deleteContact = function () {
+    var deleteCompany = function () {
         $.SmartMessageBox({
             title: "Caution hazardous operation!",
             content: "Are you sure you want to delete this?",
             buttons: '[No][Yes]'
         }, function (buttonPressed) {
             if (buttonPressed === "Yes") {
-                dataservice.companyContactDelete(selectedRowId()).done(function () {
-                    $("#projectContactsTable").jqxGrid('deleterow', selectedRowId());
+                dataservice.deleteCompany(selectedRowId()).done(function () {
+
+                    knockoutGrid.deleteRow(selectedRowId());
+
+                    selectedRowId(undefined);
 
                     $.smallBox({
                         title: "Operation completed successfuly",
@@ -76,10 +71,8 @@
 
     var projectCompaniesContactsDto = function () {
         var self = this;
-
-        self.titleId = ko.observable();
-        self.title = ko.observable();
-        self.contactNameEn = ko.observable("");
+ 
+        self.companyName = ko.observable("");
         self.contactNameAr = ko.observable("");
         self.positionEn = ko.observable("");
         self.positionAr = ko.observable("");
@@ -87,18 +80,8 @@
         self.addressAr = ko.observable("");
         self.telephone = ko.observable();
         self.mobile = ko.observable();
-        self.email = ko.observable("");
-        self.companyId = ko.observable();
-        self.keyContact = ko.observable();
-        self.designTeam = ko.observable();
-        self.enteredBy = ko.observable();
-        self.lastModified = ko.observable();
-        self.refCode = ko.observable();
-        self.deleted = ko.observable();
-        self.fromOMS = ko.observable();
-        self.fax = ko.observable();
-        self.emailVerified = ko.observable();
-        self.treeAccountId = ko.observable();
+        self.email = ko.observable(""); 
+        self.phone = ko.observable(); 
     };
 
     var projectCompany = ko.observable(new projectCompaniesContactsDto());

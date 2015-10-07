@@ -1,5 +1,5 @@
 ﻿define(['durandal/system', 'config'], function (system, config) {
- 
+
     //#region Security 
 
     var login = function (userName, userPassword) {
@@ -27,27 +27,34 @@
 
     //#endregion Security
 
-    //#region Permissions 
-
-    var getGroupsPermissions = function (permissionsObservable, documentPermissions, groupId) {
-        return $.getJSON(config.remoteServerName + "/GetGroupsPermissions?groupId=" + groupId, { documentPermissions: documentPermissions }).success(function (data) {
-            permissionsObservable(data);
-        });
+    var addCompanies = function (newAccount) {
+        return $.post(config.remoteServerName + "/AddCompanies", newAccount);
     };
 
-    var addGroupsPermissions = function (documentPermissions) {
-        return $.post(config.remoteServerName + "/AddGroupsPermissions", { '': documentPermissions });
+    var editProjectCompanies = function (editAccountObservable) {
+        return $.post(config.remoteServerName + "/EditProjectCompanies", editAccountObservable);
     };
 
-    var editGroupsPermissions = function (documentPermissions) {
-        return $.post(config.remoteServerName + "/EditGroupsPermissions", { '': documentPermissions });
+    var getCompanies = function (editAccountObservable) {
+        return $.getJSON(config.remoteServerName + "/GetCompanies");
     };
 
-    //#endregion Permissions
-      
+    var getCompaniesForEdit = function (id) {
+        return $.getJSON(config.remoteServerName + "/GetCompaniesForEdit?id=" + id);
+    };
+
+    var deleteCompany = function (id) {
+        return $.post(config.remoteServerName + "/DeleteCompany?id=" + id);
+    };
+
     var dataservice = {
         login: login,
-        checkTokenValidity: checkTokenValidity
+        checkTokenValidity: checkTokenValidity,
+        addCompanies: addCompanies,
+        editProjectCompanies: editProjectCompanies,
+        getCompanies: getCompanies,
+        getCompaniesForEdit: getCompaniesForEdit,
+        deleteCompany: deleteCompany
     };
 
 

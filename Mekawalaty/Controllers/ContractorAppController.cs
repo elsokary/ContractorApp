@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
-using System.Web; 
+using System.Web;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Hosting;
@@ -14,6 +14,7 @@ using System.Web.UI.WebControls;
 using InterfaceI.DataService;
 using DataContext.DBModel;
 using DataModel.SecurityModel;
+using DataModel.DTOModel;
 
 namespace Mekawalaty.Controllers
 {
@@ -99,9 +100,9 @@ namespace Mekawalaty.Controllers
                     var payload = new JwtPayload
                     {
                         iss = SecurityConstants.TokenIssuer,
-                        sub = user.id.ToString(), 
+                        sub = user.id.ToString(),
                         iat = currentTime,
-                        exp = currentTime + 604800 
+                        exp = currentTime + 604800
                     };
 
                     string jwt = TokenManager.EncodeToken(payload, secret);
@@ -129,7 +130,90 @@ namespace Mekawalaty.Controllers
 
             //var primeData = _accountRepository.GetUserPrimeData(_userType, _groupId, _accountOwnerId, _accountId, currentUrl);
 
+            return Ok("knkhkhkghk");
+        }
+
+
+        #region Project_Companies
+
+        [AuthorizeUser]
+        [HttpGet]
+        [Route("GetCompanies")]
+        public IHttpActionResult GetCompanies()
+        {
+            var result = _companies.GetAll().ToList();
+            return Ok(result);
+        }
+
+
+        [AuthorizeUser]
+        [HttpPost]
+        [Route("DeleteCompany")]
+        public IHttpActionResult DeleteCompany(int id)
+        {
+            companies pCompanies = _companies.FindBy(x => x.id == id).SingleOrDefault();
+            if (pCompanies != null)
+            {
+                _companies.Delete(pCompanies);
+                _companies.Save();
+
+            }
             return Ok();
         }
+
+        [AuthorizeUser]
+        [HttpPost]
+        [Route("AddCompanies")]
+        public IHttpActionResult AddCompanies(DtoCompanies projectCompanies)
+        {
+            var projectCompaniesEntity = new companies
+            {
+                companyName = projectCompanies.companyName,
+                address = projectCompanies.address,
+                email = projectCompanies.email,
+                fax = projectCompanies.fax,
+                phone = projectCompanies.phone
+
+            };
+            _companies.Add(projectCompaniesEntity);
+            _companies.Save();
+
+            _companies.Reload(projectCompaniesEntity);
+
+
+            return Ok(projectCompaniesEntity);
+        }
+
+        [AuthorizeUser]
+        [HttpGet]
+        [Route("GetCompaniesForEdit")]
+        public IHttpActionResult GetCompaniesForEdit(int id)
+        {
+            var result = _companies.FindBy(x => x.id == id).FirstOrDefault();
+            return Ok(result);
+        }
+
+        [AuthorizeUser]
+        [HttpPost]
+        [Route("EditProjectCompanies")]
+        public IHttpActionResult EditProjectCompanies(DtoCompanies projectCompanies)
+        {
+
+            companies _obj = _companies.FindBy(x => x.id == projectCompanies.id).SingleOrDefault();
+
+            _obj.companyName = projectCompanies.companyName;
+            _obj.fax = projectCompanies.fax;
+            _obj.phone = projectCompanies.phone;
+            _obj.email = projectCompanies.email;
+           
+            _companies.Edit(_obj);
+            _companies.Save();
+
+            return Ok(_obj);
+        }
+
+        #endregion
+
+
     }
 }
