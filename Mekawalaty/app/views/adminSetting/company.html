@@ -13,14 +13,14 @@
                 <!-- SINGLE GRID -->
                 <section class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                     <div class="well jarviswidget" data-widget-sortable="false" id="wid-id-0">
-                        <header data-bind="css: { rtlTable: language.rtl[currentLanguage()] }"></header>
+                        <header data-bind="css: { rtlTable: 'rtl' }"></header>
                         <div>
                             <!-- widget content -->
                             <div class="widget-body" data-bind="attr: { dir: 'rtl' }" style="overflow-x: hidden">
                                 <div class="row page-header-row">
                                     <section class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                                         <span class="page-header-text" style="font-family: Lato; color: rgb(37, 128, 247);" data-bind="text: 'الشركات'"></span>
-                                        <button class="btn btn-trans btn-xs dropdown-toggle" id="exportDropdownMenu" data-toggle="dropdown" data-bind="attr:{ title: 'تصدير'}, css: language.pullRight[currentLanguage()]">
+                                        <button class="btn btn-trans btn-xs dropdown-toggle" id="exportDropdownMenu" data-toggle="dropdown" data-bind="attr:{ title: 'تصدير'}, css: 'pull-Right'">
                                             <i class="fa fa-gear fa-2x"></i>
                                         </button>
                                         <ul class="dropdown-menu" style="right: 15px;" role="menu" data-bind="css: pull-left" aria-labelledby="exportDropdownMenu">
@@ -42,11 +42,12 @@
                                 <hr />
 
                                 <div data-bind="style: { visibility: !!(selectedRowId()) ? 'visible' : 'hidden' }">
-                                    <a href="javascript:void(0);" class="pull-right" data-bind="click: deleteContact">
+                                    <a href="javascript:void(0);" class="pull-right" data-bind="click: deleteCompany">
                                         <i style="font-size: 1.6em; margin-right: 5px;" class="fa fa-trash-o"></i>
                                     </a>
-                                </div>
-                                <div id="projectContactsTable" style="width: 100%" data-bind="jqxGridDataSource: dataSource, jqxGridColumns: columns,  jqxGrid: projectCompanies">
+                                </div> 
+
+                                <div id="projectContactsTable" style="width: 100%" data-bind="data: gridOptions()">
                                 </div>
  
                                 <div class="modal fade" id="projectCompanyModal" tabindex="-1" role="dialog" aria-labelledby="projectCompanyModal" aria-hidden="true" style="display: none;">
@@ -62,107 +63,59 @@
                                             <div class="modal-body">
                                                 <form class="smart-form" id="projectCompanyForm" novalidate="novalidate">
                                                     <fieldset data-bind="with: $root.projectCompany">
-                                                        <div class="row">
-
-                                                            <section class="col col-6">
-                                                                <label class="label" data-bind="text: 'اسم الشركة', style: { 'text-align': right }"></label>
-                                                                <label class="select">
-                                                                    <select id="contactTitle" name="contactTitle" class="form-control" data-bind="options: $root.projectContactTitle, optionsText: function(item) { return item.title; }, optionsValue: function(item) { return item.id; }, value: titleId, attr: { 'placeholder': $root.language.titleRequired[$root.currentLanguage()] }, optionsCaption: '-- Please Select a Title --'" required></select>
-                                                                    <i></i>
-                                                                </label>
-                                                            </section>
-
-                                                            <section class="col col-6">
-                                                                <label class="label" data-bind="text: $root.language.email[$root.currentLanguage()], style: { 'text-align': $root.language.direction[$root.currentLanguage()] }"></label>
-                                                                <label class="input">
-                                                                    <input id="email" type="text" class="form-control" name="email" data-bind="value: email, attr: { 'placeholder': $root.language.emailRequired[$root.currentLanguage()] }" required />
-                                                                </label>
-
-                                                            </section>
-
-                                                        </div>
-
+                      
                                                         <div class="row">
                                                             <section class="col col-6">
-                                                                <label class="label" data-bind="text: $root.language.EnglishName[$root.currentLanguage()], style: { 'text-align': $root.language.direction[$root.currentLanguage()] }"></label>
-                                                                <label class="input">
-
-                                                                    <input id="contactNameEn" type="text" class="form-control" name="contactNameEn" data-bind="value: contactNameEn, attr: { 'placeholder': $root.language.titleEnValid[$root.currentLanguage()] }" required />
-
+                                                                <label class="label" data-bind="text: 'اسم الشركة', style: { 'text-align': 'rtl' }"></label>
+                                                                <label class="input"> 
+                                                                    <input id="companyName" type="text" class="form-control" name="companyName" data-bind="value: companyName, attr: { 'placeholder': 'اسم الشركة' }" required />
                                                                 </label>
                                                             </section>
                                                             <section class="col col-6">
-                                                                <label class="label" data-bind="text: $root.language.ArabicName[$root.currentLanguage()], style: { 'text-align': $root.language.direction[$root.currentLanguage()] }"></label>
+                                                                <label class="label" data-bind="text: 'العنوان', style: { 'text-align': 'rtl' }"></label>
                                                                 <label class="input">
-                                                                    <input id="contactNameAr" type="text" class="form-control" name="contactNameAr" data-bind="value: contactNameAr, attr: { 'placeholder': $root.language.titleArValid[$root.currentLanguage()] }" required />
+                                                                    <input id="address" type="text" class="form-control" name="address" data-bind="value: address, attr: { 'placeholder': '' }" required />
                                                                 </label>
                                                             </section>
                                                         </div>
 
                                                         <div class="row">
                                                             <section class="col col-6">
-                                                                <label class="label" data-bind="text: $root.language.EnglishPosition[$root.currentLanguage()], style: { 'text-align': $root.language.direction[$root.currentLanguage()] }"></label>
+                                                                <label class="label" data-bind="text: 'فاكس', style: { 'text-align': 'rtl' }"></label>
                                                                 <label class="input">
 
-                                                                    <input id="positionEn" type="text" class="form-control" name="positionEn" data-bind="value: positionEn, attr: { 'placeholder': $root.language.EnglishPosition[$root.currentLanguage()] }" />
+                                                                    <input id="fax" type="text" class="form-control" name="fax" data-bind="value: fax, attr: { 'placeholder': '' }" />
 
                                                                 </label>
                                                             </section>
                                                             <section class="col col-6">
-                                                                <label class="label" data-bind="text: $root.language.ArabicPosition[$root.currentLanguage()], style: { 'text-align': $root.language.direction[$root.currentLanguage()] }"></label>
+                                                                <label class="label" data-bind="text: 'تليفون', style: { 'text-align': 'rtl' }"></label>
                                                                 <label class="input">
 
-                                                                    <input id="positionAr" type="text" class="form-control" name="positionAr" data-bind="value: positionAr, attr: { 'placeholder': $root.language.ArabicPosition[$root.currentLanguage()] }" />
+                                                                    <input id="phone" type="text" class="form-control" name="phone" data-bind="value: phone, attr: { 'placeholder': '' }" />
 
                                                                 </label>
                                                             </section>
                                                         </div>
                                                         <div class="row">
+
                                                             <section class="col col-6">
-                                                                <label class="label" data-bind="text: $root.language.EnglishAddress[$root.currentLanguage()], style: { 'text-align': $root.language.direction[$root.currentLanguage()] }"></label>
+                                                                <label class="label" data-bind="text: 'البريد الالكترونى', style: { 'text-align': 'rtl' }"></label>
                                                                 <label class="input">
-
-                                                                    <input id="addressEn" type="text" class="form-control" name="addressEn" data-bind="value: addressEn, attr: { 'placeholder': $root.language.EnglishAddress[$root.currentLanguage()] }" />
-
+                                                                    <input id="email" type="text" class="form-control" name="email" data-bind="value: email, attr: { 'placeholder': '' }" required />
                                                                 </label>
-                                                            </section>
-                                                            <section class="col col-6">
-                                                                <label class="label" data-bind="text: $root.language.ArabicAddress[$root.currentLanguage()], style: { 'text-align': $root.language.direction[$root.currentLanguage()] }"></label>
-                                                                <label class="input">
 
-                                                                    <input id="addressAr" type="text" class="form-control" name="addressAr" data-bind="value: addressAr, attr: { 'placeholder': $root.language.ArabicAddress[$root.currentLanguage()] }" />
-
-                                                                </label>
                                                             </section>
+
                                                         </div>
 
-                                                        <div class="row">
-                                                            <section class="col col-6">
-                                                                <label class="label" data-bind="text: $root.language.Telephone[$root.currentLanguage()], style: { 'text-align': $root.language.direction[$root.currentLanguage()] }"></label>
-                                                                <label class="input">
-
-                                                                    <input id="telephone" type="text" class="form-control" name="telephone" data-bind="value: telephone, attr: { 'placeholder': $root.language.telephoneRequired[$root.currentLanguage()] }" required />
-
-                                                                </label>
-                                                            </section>
-                                                            <section class="col col-6">
-                                                                <label class="label" data-bind="text: $root.language.Mobile[$root.currentLanguage()], style: { 'text-align': $root.language.direction[$root.currentLanguage()] }"></label>
-                                                                <label class="input">
-
-                                                                    <input id="mobile" type="text" class="form-control" name="mobile" data-bind="value: mobile, attr: { 'placeholder': $root.language.mobileRequired[$root.currentLanguage()] }" required />
-
-                                                                </label>
-                                                            </section>
-                                                        </div>
+                                                        
                                                     </fieldset>
                                                 </form>
                                             </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-default" data-dismiss="modal">
-                                                    Cancel
-                                                </button>
-                                                <button type="submit" class="btn btn-primary" id="editProjectCompanies" data-bind=" text: language.addTitle[currentLanguage()], click: editProjectCompanies, visible: changeStatus()"></button>
-                                                <button type="submit" class="btn btn-primary" id="addProjectCompanies" data-bind="text: language.editTitle[currentLanguage()], click: addProjectCompanies, visible: !changeStatus()"></button>
+                                            <div class="modal-footer"> 
+                                                <button type="submit" class="btn btn-primary" id="editProjectCompanies" data-bind=" text: 'اضافة', click: editProjectCompanies, visible: changeStatus()"></button>
+                                                <button type="submit" class="btn btn-primary" id="addProjectCompanies" data-bind="text: 'تعديل', click: addProjectCompanies, visible: !changeStatus()"></button>
                                             </div>
                                         </div>
                                     </div>

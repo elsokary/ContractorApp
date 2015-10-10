@@ -5,8 +5,8 @@
 
     var selectedRowId = ko.observable();
 
-    var changeStatus = ko.observable(false);  
-     
+    var changeStatus = ko.observable(false);
+
     var exportColumns = [];
 
     var exportToExcel = function () {
@@ -71,120 +71,18 @@
 
     var projectCompaniesContactsDto = function () {
         var self = this;
- 
         self.companyName = ko.observable("");
-        self.contactNameAr = ko.observable("");
-        self.positionEn = ko.observable("");
-        self.positionAr = ko.observable("");
-        self.addressEn = ko.observable("");
-        self.addressAr = ko.observable("");
-        self.telephone = ko.observable();
-        self.mobile = ko.observable();
-        self.email = ko.observable(""); 
-        self.phone = ko.observable(); 
+        self.address = ko.observable("");
+        self.fax = ko.observable();
+        self.email = ko.observable("");
+        self.phone = ko.observable();
     };
 
     var projectCompany = ko.observable(new projectCompaniesContactsDto());
 
-    function activate(id) {
+    function activate() {
 
-        companyId(id);
-
-        dataSource.datafields = [{
-            name: 'id', type: 'int'
-        }, {
-            name: 'title', type: 'string'
-        }, {
-            name: 'contactName', type: 'string'
-        }, {
-            name: 'position', type: 'string'
-        }, {
-            name: 'mobile', type: 'string'
-        }, {
-            name: 'email', type: 'string'
-        }, {
-            name: 'enteredBy', type: 'string'
-        }, {
-            name: 'lastModified', type: 'string'
-        }];
-
-        columns.gridColumns([{
-            text: "No.",
-            datafield: 'RowNumber',
-            cellsrenderer: function (row) {
-                var id = $('#projectContactsTable').jqxGrid('getrowid', row);
-
-                return '<div class="rowIndex smart-form">' +
-                           '<span>' + row + '</span>' +
-                           '<label class="radio grid-checkbox" style="display: none; margin-left: 28px !important; margin-top: 15px !important;">' +
-                               '<input type="radio" name="deletegrid" id="' + id + '" />' +
-                               '<i></i>&nbsp;' +
-                           '</label>' +
-                       '</div>';
-            },
-            filterable: false,
-            width: '79px'
-        }, {
-            text: config.language.transfer[config.currentLanguage()],
-            datafield: 'transfer',
-            cellsrenderer: function (row) {
-                var id = $('#projectContactsTable').jqxGrid('getrowid', row);
-                return '<div class="btn-group" role="group" style="margin-top: 15px;"><button class="btn btn-xs btn-default transfer" data-id="' + id + '" data-toggle="modal" data-target="#projectCompanyModalTransfer"><i class="fa fa-retweet"></i></button>';
-            },
-            filterable: false,
-            groupable: false,
-            sortable: false,
-            columnsreorder: false,
-            width: '140px',
-            resizable: false,
-            draggable: false
-        }, {
-            text: config.language.title[config.currentLanguage()],
-            datafield: 'title',
-            columntype: 'textbox',
-            filtertype: 'input',
-            width: '230px'
-        }, {
-            text: config.language.ContactName[config.currentLanguage()],
-            datafield: 'contactName',
-            columntype: 'textbox',
-            filtertype: 'input',
-            width: '230px'
-        }, {
-            text: config.language.discipline[config.currentLanguage()],
-            datafield: 'position',
-            columntype: 'textbox',
-            filtertype: 'input',
-            width: '230px'
-        }, {
-            text: config.language.Mobile[config.currentLanguage()],
-            datafield: 'mobile',
-            columntype: 'textbox',
-            filtertype: 'input',
-            width: '140px'
-        }, {
-            text: config.language.email[config.currentLanguage()],
-            datafield: 'email',
-            columntype: 'textbox',
-            filtertype: 'input',
-            width: '200px'
-        }, {
-            text: config.language.enteredBy[config.currentLanguage()],
-            datafield: 'enteredBy',
-            lumntype: 'textbox',
-            filtertype: 'input',
-            width: '360px'
-        }, {
-            text: config.language.lastModified[config.currentLanguage()],
-            datafield: 'lastModified',
-            lumntype: 'textbox',
-            filtertype: 'input',
-            width: '360px'
-        }]);
-
-        dataservice.getCompanyContact(projectCompanies, id);
-        dataservice.getProjectCompaniesList(companies, 2);
-        dataservice.getAccountsDefaultListLists(projectContactTitle, "contacttitle");
+        
     };
 
     function canActivate() {
@@ -208,60 +106,18 @@
     };
 
     function attached() {
-        jQuery.validator.addMethod("notEqual", function (value, element, param) {
-            return this.optional(element) || value != param;
-        }, "Please specify a different value");
-
-
-        $('#projectCompanyFormTransfer').validate({
-            // Rules for form validation
-            rules: {
-                companyId: {
-                    required: true,
-                    notEqual: '0'
-                }
-            },
-
-            // Messages for form validation
-            messages: {
-                companyId: {
-                    required: config.language.ComapnyNameRequired[config.currentLanguage()]
-                }
-            },
-
-            // Do not change code below
-            errorPlacement: function (error, element) {
-                error.insertAfter(element.parent());
-            }
-        });
-
 
         $('#projectCompanyForm').validate({
             // Rules for form validation
             rules: {
-                companyId: {
-                    required: true,
-                    notEqual: '0'
-                },
-                titleId: {
-                    required: true,
-                    notEqual: '0'
-                },
-                contactNameEn: {
-                    required: true
-                },
-                contactNameAr: {
+                companyName: {
                     required: true
                 },
                 email: {
                     required: true,
                     email: true
                 },
-                Telephone: {
-                    required: true,
-                    digits: true
-                },
-                Mobile: {
+                phone: {
                     required: true,
                     digits: true
                 }
@@ -269,27 +125,14 @@
 
             // Messages for form validation
             messages: {
-                companyId: {
+                companyName: {
                     required: config.language.ComapnyNameRequired[config.currentLanguage()]
-                },
-                titleId: {
-                    required: config.language.titleRequired[config.currentLanguage()]
-                },
-                contactNameEn: {
-                    required: config.language.contactNameRequired[config.currentLanguage()]
-                },
-                contactNameAr: {
-                    required: config.language.contactNameRequired[config.currentLanguage()]
                 },
                 email: {
                     required: config.language.emailRequired[config.currentLanguage()]
                 },
-                Telephone: {
+                phone: {
                     required: config.language.telephoneRequired[config.currentLanguage()],
-                    digits: config.language.onlyNumbers[config.currentLanguage()]
-                },
-                Mobile: {
-                    required: config.language.mobileRequired[config.currentLanguage()],
                     digits: config.language.onlyNumbers[config.currentLanguage()]
                 }
             },
@@ -354,38 +197,7 @@
             }
         });
 
-        $('#projectContactsTable').on('mouseover', '.rowIndex', function (event) {
-            $(this).children("span").css("display", "none");
 
-            var style = $(this).children(".radio").attr("style");
-
-            style = style.replace("display: none;", "");
-
-            $(this).children(".radio").attr("style", style);
-        });
-
-        $('#projectContactsTable').on('mouseleave', '.rowIndex', function (event) {
-            var deleteRadioElement = $(this).children(".radio").children("input");
-
-            var isChecked = deleteRadioElement[0].checked;
-
-            if (!isChecked) {
-                $(this).children("span").removeAttr("style");
-                $(this).children(".radio").css("display", "none");
-            } else {
-                $('#projectContactsTable').find(".radio").children("input:not(:checked)").parent().css("display", "none");
-                $('#projectContactsTable').find(".radio").children("input:not(:checked)").parent().parent().children("span").removeAttr("style");
-            }
-        });
-
-        $("#projectContactsTable").on('click', '.transfer', function (event) {
-
-            var id = $(event.currentTarget).data("id");
-
-            var data = $('#projectContactsTable').jqxGrid('getrowdatabyid', id);
-
-            dataservice.getCompanyContactForEdit(projectCompany, data["id"]);
-        });
     };
 
     function editProjectCompanies() {
@@ -433,45 +245,12 @@
         }
     };
 
-    function transferProjectCompanyContact() {
-        var isValid = $('#projectCompanyFormTransfer').valid();
-        if (isValid) {
-            dataservice.transferCompanyContact(projectCompany())
-                .done(function (result) {
-                    $('#projectContactsTable').jqxGrid('updaterow', result["id"], result);
-                    projectCompany(null);
-                    $('#projectCompanyModalTransfer').modal('hide');
-
-                    $.smallBox({
-                        title: "Operation completed successfuly",
-                        content: "<i class='fa fa-clock-o'></i> <i>Record deleted successfuly...</i>",
-                        color: "#659265",
-                        iconSmall: "fa fa-check fa-2x fadeInRight animated",
-                        timeout: 2000
-                    });
-                }).fail(function () {
-                    $('#projectCompanyModalTransfer').modal('hide');
-                    $.smallBox({
-                        title: "Operation was canceled",
-                        content: "<i class='fa fa-clock-o'></i> <i>Canceled delete...</i>",
-                        color: "#C46A69",
-                        iconSmall: "fa fa-times fa-2x fadeInRight animated",
-                        timeout: 2000
-                    });
-                });
-        } else {
-            $('#projectCompanyFormTransfer').validate();
-        }
-    };
-
     function add() {
         changeStatus(false);
         if (config.isCompany() === false) {
             var isAllowed = config.userPermissions.indexOf(10);
             if (isAllowed != -1) {
                 projectCompany(new projectCompaniesContactsDto());
-
-                projectCompany().companyId(companyId());
 
                 $('#projectCompanyModal').modal('show');
 
@@ -492,38 +271,23 @@
     };
 
 
-    function canDeactivate() {
-        config.currentModuleMenu(undefined);
-        return true;
-    };
-
-    
-
     var vm = {
-        title: config.language.ContactsLog[config.currentLanguage()],
+        gridOptions: gridOptions,
+        title: "شاشة الشركات",
         activate: activate,
         canActivate: canActivate,
-        projectCompanies: projectCompanies,
         projectCompany: projectCompany,
         attached: attached,
         editProjectCompanies: editProjectCompanies,
         changeStatus: changeStatus,
-        addProjectCompanies: addProjectCompanies,
-        projectContactTitle: projectContactTitle,
-        language: config.language,
+        addProjectCompanies: addProjectCompanies, 
         currentLanguage: config.currentLanguage,
-        editable: editable,
-        transferProjectCompanyContact: transferProjectCompanyContact,
-        companies: companies,
-        dataSource: dataSource,
-        columns: columns,
         exportToExcel: exportToExcel,
         exportToWord: exportToWord,
         exportToPdf: exportToPdf,
-        deleteContact: deleteContact,
+        deleteCompany: deleteCompany,
         selectedRowId: selectedRowId,
-        add: add,
-        canDeactivate: canDeactivate
+        add: add
     };
 
     return vm;

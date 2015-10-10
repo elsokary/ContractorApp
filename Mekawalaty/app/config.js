@@ -11,6 +11,12 @@
         title: 'Dashboard',
         nav: true,
         settings: { Dashboard: true }
+    }, {
+        route: 'company',
+        moduleId: 'adminSetting/company',
+        title: 'شاشة الشركات',
+        nav: true,
+        settings: { admin: true }
     }];
 
     var currentModuleMenu = ko.observable();
